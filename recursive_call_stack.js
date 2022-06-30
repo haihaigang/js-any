@@ -1,11 +1,12 @@
-// 自定义堆栈实现的函数递归调用
-
+// 实现功能如下：
 // f(1) = 1
 // f(2) = 2 + f(1)
 // f(3) = 3 + f(2)
 // ...
 // f(n) = m + f(n-1)
 
+
+// 自定义堆栈实现的函数递归调用
 let stack = (() => {
     const queue = []
 
@@ -47,11 +48,10 @@ function main(n) {
     return f1
 }
 
-main(5)
+main(8000)
 
-function fab(n) {
-    //console.log(n)
-    if (n <= 1) return 1
+function fab(n, p = 0) {
+    if (n < 1) return p
     return n + fab(n - 1)
 }
-fab(5)
+fab(10)
