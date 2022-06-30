@@ -6,6 +6,13 @@
 // f(n) = m + f(n-1)
 
 
+// 递归实现
+function fab(n, p = 0) {
+    if (n < 1) return p
+    return n + fab(n - 1)
+}
+fab(10)
+
 // 自定义堆栈实现的函数递归调用
 let stack = (() => {
     const queue = []
@@ -33,15 +40,15 @@ function main(n) {
         stack.add(i)
     }
 
-    let m
+    let s
     let f1
-    while(m = stack.pop()) {
-        //console.log(m)
-        if (m.n === 1) {
-            m.val = f1 = 1
+    while(s = stack.pop()) {
+        //console.log(s)
+        if (s.n === 1) {
+            s.val = f1 = 1
         } else {
-            m.val = m.n + f1
-            f1 = m.val
+            s.val = s.n + f1
+            f1 = s.val
         }
     }
 
@@ -50,8 +57,12 @@ function main(n) {
 
 main(8000)
 
-function fab(n, p = 0) {
-    if (n < 1) return p
-    return n + fab(n - 1)
+// 循环形式
+function fabLoop(n) {
+    let ret = 0
+    for(let i = n; i >0; i--) {
+        ret += i
+    }
+
+    return ret
 }
-fab(10)
