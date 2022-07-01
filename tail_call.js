@@ -86,3 +86,27 @@ function fibTailFake(n, ret = 0, b = 1) {
     return fibTailFake.bind(this, n - 1, b, ret + b)
 }
 tran(fibTailFake(5))
+
+// 3 自定义实现尾调用
+function createCustomTail(f) {
+    let queue = []
+    let doing = false
+    return function() {
+        queue.push(arguments)
+        if (!doing) {
+            doing = true
+            while(queue.length) {
+                value = f.apply(null, queue.shift())
+            }
+            doing = false
+            return value
+        }
+    }
+}
+
+const fibTailCustom = createCustomTail(function(n, ret=0, b=1) {
+    if(n === 0) return ret
+    return fibTailCustom(n-1, b, ret+b)
+})
+
+fibTailCustom(5)
