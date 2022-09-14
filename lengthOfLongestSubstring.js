@@ -71,7 +71,10 @@ function method3(s) {
       set.add(c)
       ret = Math.max(ret, set.size)
     } else {
-      set.delete(c)
+      // 删除第一个元素
+      let [first] = set.values()
+      set.delete(first)
+      continue
     }
     start++
   }
