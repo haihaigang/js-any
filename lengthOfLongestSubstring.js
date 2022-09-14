@@ -36,22 +36,20 @@ function method2(s) {
   let end = 0
   let len = s.length
 
-  while(true) {
+  while (start < len) {
     if (end >= len) {
       start += 1
       end = start
     }
-    if (start >= len) {
-      break
-    }
 
     end++
     let ss = s.substring(start, end)
+    console.log(end, ss)
     if (new Set(ss.split('')).size === ss.length) {
       ans = Math.max(ans, ss.length)
     } else {
+      // 如果子字符串有重复，前移动一位，后移动两位（包括重复的一位）
       start += 1
-      // end = start
       end -= 2
     }
   }
